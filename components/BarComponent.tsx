@@ -38,7 +38,7 @@ export default function BarComponent({
     <div
       ref={container}
       className={clsx(
-        "flex select-none flex-col items-center rounded-xl border bg-slate-100 px-2 py-1 text-sm shadow-md ring-green-300 ring-offset-1 transition-colors duration-500 ease-out",
+        "flex select-none flex-col items-center rounded-xl bg-slate-100 px-2 py-1 text-sm shadow ring-green-300 ring-offset-1 transition-colors duration-500 ease-out",
         beat !== undefined && "ring-2",
       )}
     >
@@ -47,7 +47,7 @@ export default function BarComponent({
           <div
             key={idx}
             className={clsx(
-              "font-music h-7 w-4 text-center text-xl",
+              "h-7 w-4 text-center font-music text-xl",
               beat === idx ? "font-semibold text-slate-800" : "text-slate-500",
             )}
           >
@@ -73,7 +73,7 @@ export function BarComponentButton({ type }: { type: BarType }) {
         {getPatternStrings(type).map((note, idx) => (
           <div
             key={idx}
-            className="font-music h-6 w-3 text-center text-base text-slate-900"
+            className="h-6 w-3 text-center font-music text-base text-slate-900"
           >
             {note}
           </div>
@@ -86,9 +86,9 @@ export function BarComponentButton({ type }: { type: BarType }) {
 function getPatternStrings(type: BarType) {
   switch (type) {
     case "full":
-      return ["𝅘𝅥𝅮", "𝅘𝅥𝅮", "𝅘𝅥𝅮", "𝅘𝅥𝅮"];
+      return ["𝅘𝅥", "𝅘𝅥", "𝅘𝅥", "𝅘𝅥"];
     case "backbeat":
-      return ["𝄽", "𝅘𝅥𝅮", "𝄽", "𝅘𝅥𝅮"];
+      return ["𝄽", "𝅘𝅥", "𝄽", "𝅘𝅥"];
     case "silence":
       return ["𝄽", "𝄽", "𝄽", "𝄽"];
   }
