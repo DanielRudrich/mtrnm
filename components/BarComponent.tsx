@@ -69,11 +69,11 @@ export function BarComponentButton({ type }: { type: BarType }) {
         "flex select-none flex-col items-center rounded-xl border bg-slate-200 px-2 py-0.5 shadow hover:bg-white",
       )}
     >
-      <div className="flex flex-row items-center justify-center space-x-1">
+      <div className="flex flex-row items-center justify-center space-x-0.5">
         {getPatternStrings(type).map((note, idx) => (
           <div
             key={idx}
-            className="h-6 w-3 text-center font-music text-base text-slate-900"
+            className="h-5 w-3 text-center font-music text-sm text-slate-900"
           >
             {note}
           </div>

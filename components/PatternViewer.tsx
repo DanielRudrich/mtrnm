@@ -36,9 +36,9 @@ export function PatternViewer() {
       {pattern.length === 0 ? (
         <div
           ref={infoRef}
-          className="w-64 text-center font-mono text-sm text-slate-400"
+          className="w-96 p-2 text-center font-mono text-sm text-slate-400"
         >
-          add bars using the buttons
+          add bars using the buttons above or 1, 2, 3 keys
         </div>
       ) : (
         <div className="grid grid-cols-3 gap-2 p-2 sm:grid-cols-4">
