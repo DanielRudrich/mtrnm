@@ -15,7 +15,7 @@ export default function BPMSlider() {
         className="w-60"
         type="range"
         min="30"
-        max="240"
+        max="300"
         step="0.01"
         value={bpm}
         onChange={sliderValueChanged}

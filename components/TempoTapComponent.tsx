@@ -29,8 +29,12 @@ class TempoTapOMat {
     const avg = sum / this.diffs.length;
     const bpm = Math.round(60000 / avg);
 
-    if (bpm >= 30 && bpm <= 240) return bpm;
+    return clamp(bpm, 30, 300);
   }
+}
+
+function clamp(num: number, min: number, max: number) {
+  return Math.min(Math.max(num, min), max);
 }
 
 export function TempoTapComponent() {

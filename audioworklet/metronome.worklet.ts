@@ -37,7 +37,7 @@ class TickSound {
 
 class Metronome {
   private _bpm: number = 120;
-  private _playing: boolean = true;
+  private _playing: boolean = false;
 
   private elapsedTimeSinceLastTick: number = 0;
   private interval: number = 0;
@@ -176,7 +176,7 @@ class MetronomeProcessor extends AudioWorkletProcessor {
         name: "bpm",
         defaultValue: 120,
         minValue: 30,
-        maxValue: 240,
+        maxValue: 300,
         automationRate: "k-rate",
       },
       {

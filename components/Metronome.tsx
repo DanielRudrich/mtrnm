@@ -34,6 +34,7 @@ export function Metronome() {
         const metronome = new AudioWorkletNode(audioContext, "metronome", {
           processorOptions: { pattern },
         });
+        metronome.parameters.get("bpm")!.value = bpm;
         metronomeRef.current = metronome;
         metronome.port.onmessage = (e) => {
           setPosition(e.data);
