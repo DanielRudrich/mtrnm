@@ -16,6 +16,20 @@ export function Metronome() {
 
   const contextRef = useRef<AudioContext | null>(null);
   const metronomeRef = useRef<AudioWorkletNode | null>(null);
+  const silenceAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (!silenceAudioRef.current) {
+      const silenceDataURL =
+        "data:audio/mp3;base64,//MkxAAHiAICWABElBeKPL/RANb2w+yiT1g/gTok//lP/W/l3h8QO/OCdCqCW2Cw//MkxAQHkAIWUAhEmAQXWUOFW2dxPu//9mr60ElY5sseQ+xxesmHKtZr7bsqqX2L//MkxAgFwAYiQAhEAC2hq22d3///9FTV6tA36JdgBJoOGgc+7qvqej5Zu7/7uI9l//MkxBQHAAYi8AhEAO193vt9KGOq+6qcT7hhfN5FTInmwk8RkqKImTM55pRQHQSq//MkxBsGkgoIAABHhTACIJLf99nVI///yuW1uBqWfEu7CgNPWGpUadBmZ////4sL//MkxCMHMAH9iABEmAsKioqKigsLCwtVTEFNRTMuOTkuNVVVVVVVVVVVVVVVVVVV//MkxCkECAUYCAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
+      const audio = document.createElement("audio");
+      audio.controls = false;
+      audio.preload = "auto";
+      audio.loop = true;
+      audio.src = silenceDataURL;
+      silenceAudioRef.current = audio;
+    }
+  }, []);
 
   useEffect(() => {
     const metronome = metronomeRef.current;
@@ -68,6 +82,7 @@ export function Metronome() {
       return;
     }
 
+    silenceAudioRef.current?.play();
     audioContext.resume();
 
     const newPlaying = !playing;
@@ -80,7 +95,7 @@ export function Metronome() {
       <div className="flex flex-row items-center justify-evenly space-x-2">
         <TempoTapComponent />
         <div className="flex flex-col items-center p-2">
-          <div className="text-6xl font-bold tracking-tighter text-gray-700">
+          <div className="text-7xl font-bold tracking-tighter text-gray-700">
             {bpm}
           </div>
           <div className="text-xs uppercase text-gray-400">
