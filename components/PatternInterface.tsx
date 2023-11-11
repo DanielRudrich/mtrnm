@@ -10,6 +10,8 @@ export function PatternInterface() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement) return;
+
       switch (e.key) {
         case "1":
           setPattern((prev) => [...prev, "full"]);

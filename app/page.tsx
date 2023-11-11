@@ -8,7 +8,7 @@ import { PatternInterface } from "@/components/PatternInterface";
 
 export default function Home() {
   return (
-    <main className="container m-auto flex flex-col items-center space-y-6 p-8">
+    <main className="container m-auto flex flex-col items-center space-y-10 p-8">
       <ContextProvider>
         <Logo />
         <Metronome />

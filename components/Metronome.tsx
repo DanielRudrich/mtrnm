@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { BsFillPlayFill, BsStopFill } from "react-icons/bs";
 import { TempoTapComponent } from "./TempoTapComponent";
 import BPMSlider from "./BPMSlider";
+import BPM from "./BPM";
 
 export function Metronome() {
   const { bpm } = useBpm();
@@ -95,9 +96,7 @@ export function Metronome() {
       <div className="flex flex-row items-center justify-evenly space-x-2">
         <TempoTapComponent />
         <div className="flex flex-col items-center p-2">
-          <div className="text-7xl font-bold tracking-tighter text-gray-700">
-            {bpm}
-          </div>
+          <BPM />
           <div className="text-xs uppercase text-gray-400">
             beats per minute
           </div>

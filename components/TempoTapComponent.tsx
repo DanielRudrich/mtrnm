@@ -1,3 +1,4 @@
+import { clamp } from "@/common/utils";
 import { useBpm } from "@/context/BPMContext";
 import { useEffect, useMemo, useRef } from "react";
 
@@ -31,10 +32,6 @@ class TempoTapOMat {
 
     return clamp(bpm, 30, 300);
   }
-}
-
-function clamp(num: number, min: number, max: number) {
-  return Math.min(Math.max(num, min), max);
 }
 
 export function TempoTapComponent() {
