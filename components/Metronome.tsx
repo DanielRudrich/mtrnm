@@ -8,6 +8,9 @@ import { TempoTapComponent } from "./TempoTapComponent";
 import BPMSlider from "./BPMSlider";
 import BPM from "./BPM";
 
+// @ts-ignore
+import metronomeWorklet from "../audioworklet/metronome.worklet";
+
 export function Metronome() {
   const { bpm } = useBpm();
   const { pattern } = usePattern();
@@ -43,7 +46,7 @@ export function Metronome() {
   useEffect(() => {
     const audioContext = new AudioContext();
     audioContext.audioWorklet
-      ?.addModule("audioworklet/metronome.worklet.js")
+      ?.addModule(metronomeWorklet)
       .then((_) => {
         contextRef.current = audioContext;
         const metronome = new AudioWorkletNode(audioContext, "metronome", {

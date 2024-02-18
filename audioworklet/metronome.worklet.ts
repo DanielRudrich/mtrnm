@@ -155,6 +155,7 @@ class Metronome {
   }
 }
 
+// @ts-ignore
 class MetronomeProcessor extends AudioWorkletProcessor {
   metronome = new Metronome(sampleRate, (position) => {
     this.port.postMessage(position);
@@ -204,4 +205,5 @@ class MetronomeProcessor extends AudioWorkletProcessor {
   }
 }
 
+// @ts-ignore Register the AudioWorklet processor
 registerProcessor("metronome", MetronomeProcessor);

@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "audioworklet": "tsc --project ./audioworklet",
     "dev": "next dev",
-    "build": "npm run audioworklet && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -20,9 +19,11 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "audio-worklet-loader": "^1.1.0",
     "autoprefixer": "^10.0.1",
     "clsx": "^2.0.0",
     "geist": "^1.0.0",
+    "ignore-loader": "^0.1.2",
     "postcss": "^8",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.6",
