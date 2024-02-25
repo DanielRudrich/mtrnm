@@ -3,13 +3,13 @@ import { usePattern } from "@/context/PatternContext";
 import { usePosition } from "@/context/PositionContext";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { BsFillPlayFill, BsStopFill } from "react-icons/bs";
 import { TempoTapComponent } from "./TempoTapComponent";
 import BPMSlider from "./BPMSlider";
 import BPM from "./BPM";
 
 // @ts-ignore
 import metronomeWorklet from "../audioworklet/metronome.worklet";
+import PlayButton from "./PlayButton";
 
 export function Metronome() {
   const { bpm } = useBpm();
@@ -104,12 +104,7 @@ export function Metronome() {
             beats per minute
           </div>
         </div>
-        <button
-          className="flex h-16 w-16 items-center justify-center rounded-full bg-gray-200 px-2 py-1 font-mono text-2xl text-gray-600 hover:bg-gray-300"
-          onClick={togglePlaying}
-        >
-          {playing ? <BsStopFill /> : <BsFillPlayFill />}
-        </button>
+        <PlayButton playing={playing} togglePlaying={togglePlaying} />
       </div>
       <BPMSlider />
     </div>
