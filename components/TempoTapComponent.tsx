@@ -1,4 +1,4 @@
-import { clamp } from "@/common/utils";
+import { sanitizeBPM } from "@/common/utils";
 import { useBpm } from "@/context/BPMContext";
 import { useEffect, useMemo, useRef } from "react";
 
@@ -30,7 +30,7 @@ class TempoTapOMat {
     const avg = sum / this.diffs.length;
     const bpm = Math.round(60000 / avg);
 
-    return clamp(bpm, 30, 300);
+    return sanitizeBPM(bpm);
   }
 }
 

@@ -48,7 +48,9 @@ export default function BarComponent({
             key={idx}
             className={clsx(
               "h-7 w-4 text-center font-music text-xl",
-              beat === idx ? "font-semibold text-slate-800" : "text-slate-500",
+              beat === idx
+                ? "scale-125 font-semibold text-slate-800"
+                : "text-slate-500",
             )}
           >
             {note}

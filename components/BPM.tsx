@@ -1,10 +1,55 @@
-import { clamp } from "@/common/utils";
+import { sanitizeBPM } from "@/common/utils";
 import { useBpm } from "@/context/BPMContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function BPM() {
   const { bpm, setBpm } = useBpm();
   const [editing, setEditing] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement) return;
+      if (
+        e.target &&
+        e.target instanceof HTMLElement &&
+        e.target.getAttribute("role") == "slider"
+      )
+        return;
+
+      switch (e.key) {
+        case "ArrowUp":
+          e.preventDefault();
+
+          if (e.metaKey || e.ctrlKey) {
+            setBpm((prev) => sanitizeBPM(Math.round(prev * 1.1)));
+          } else {
+            const step = e.shiftKey ? 10 : 1;
+            setBpm((prev) => sanitizeBPM(prev + step));
+          }
+
+          break;
+        case "ArrowDown":
+          e.preventDefault();
+
+          if (e.metaKey || e.ctrlKey) {
+            setBpm((prev) => sanitizeBPM(Math.round(prev / 1.1)));
+          } else {
+            const step = e.shiftKey ? 10 : 1;
+            setBpm((prev) => sanitizeBPM(prev - step));
+          }
+
+          break;
+        default:
+          break;
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <div className="flex h-16 w-32 items-center justify-center text-7xl font-bold tracking-tighter text-gray-700">
@@ -17,7 +62,7 @@ export default function BPM() {
           onChange={(e) => {
             const newBpm = parseInt(e.target.value);
             if (!isNaN(newBpm)) {
-              setBpm(clamp(newBpm, 30, 300));
+              setBpm(sanitizeBPM(newBpm));
             }
           }}
           onBlur={() => setEditing(false)}

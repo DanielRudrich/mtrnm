@@ -13,6 +13,7 @@ export default function PlayButton({
   useEffect(() => {
     const keydown = (e: KeyboardEvent) => {
       if (e.key === " " && e.target !== button.current) {
+        e.preventDefault();
         togglePlaying();
       }
     };
